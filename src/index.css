@@ -44,6 +44,16 @@
   color: #aab8c2;
 }
 
-.buttons i {
+.reply-button, .retweet-button, 
+.like-button, .more-options-button {
   width:80px;
+  display:inline-block;
+}
+
+.retweet-count, .like-count {
+  display:relative;
+  font-size:13px;
+  margin-left:8px;
+  font-weight:bold;
+  bottom:2px;
 }
