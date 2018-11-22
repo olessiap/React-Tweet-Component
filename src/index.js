@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 function Tweet({tweet}) {
     return(
@@ -32,6 +33,10 @@ function Avatar({hash}) {
     );
 }
 
+Avatar.propTypes = {
+    hash: PropTypes.string
+};
+
 function NameWithHandle({author}) {
     const {name, handle} = author
     return(
@@ -40,6 +45,12 @@ function NameWithHandle({author}) {
             <span className="handle">@{handle}</span>
         </span>
     );
+}
+NameWithHandle.propTypes = {
+    author:PropTypes.shape({
+        name:PropTypes.string.isRequired,
+        handle:PropTypes.string.isRequired
+    }).isRequired
 }
 
 function Message({message}) {
@@ -50,11 +61,19 @@ function Message({message}) {
     )
 } 
 
+Message.propTypes = {
+    message: PropTypes.string.isRequired
+};
+
 const Time = ({time}) => {
     var timeString = moment(time).fromNow();
     return(
         <span className="time">{timeString}</span>
     )
+};
+
+Time.propTypes = {
+    time:PropTypes.string.isRequired
 };
 
 const ReplyButton = () => (
@@ -73,6 +92,10 @@ const RetweetButton = ({count}) => {
     );
 };
 
+RetweetButton.propTypes = {
+    count: PropTypes.number
+};
+
 const LikeButton = ({count}) => {
     return(
     <span className="like-button">
@@ -83,6 +106,10 @@ const LikeButton = ({count}) => {
         </span>}
     </span>
     );
+};
+
+LikeButton.propTypes = {
+    count:PropTypes.number
 };
 
 const MoreOptionsButton = () => (
