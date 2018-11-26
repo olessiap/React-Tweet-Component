@@ -4,21 +4,25 @@ import './index.css';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-function Tweet({tweet}) {
+function Tweet({tweets}) {
     return(
-        <div className='tweet'>
-            <Avatar hash={tweet.gravatar}/> 
-            <div className='content'>
-                <NameWithHandle author={tweet.author}/>
-                <Time time={tweet.timestamp}/>
-                <Message message={tweet.message}/> 
-                <div className='buttons'>
-                    <ReplyButton />
-                    <RetweetButton count={tweet.retweets} />
-                    <LikeButton count={tweet.likes}/>
-                    <MoreOptionsButton />
+        <div className="tweets">
+        {tweets.map(tweet => 
+            <div className='tweet' key={tweet.id}>
+                <Avatar hash={tweet.gravatar}/> 
+                <div className='content'>
+                    <NameWithHandle author={tweet.author}/>
+                    <Time time={tweet.timestamp}/>
+                    <Message message={tweet.message}/> 
+                    <div className='buttons'>
+                        <ReplyButton />
+                        <RetweetButton count={tweet.retweets} />
+                        <LikeButton count={tweet.likes}/>
+                        <MoreOptionsButton />
+                    </div>
                 </div>
             </div>
+        )}
         </div>
     );
 }
@@ -116,19 +120,70 @@ const MoreOptionsButton = () => (
     <i className="fa fa-ellipsis-h more-options-button"/>
 );
 
-const testTweet = {
-    gravatar:'1571724/pexels-photo-1571724.jpeg?auto=compress&cs=tinysrgb&h=350',
-    message:"robots dance on the tamborine",
-    author: {
-        name: 'Oli',
-        handle: "oleeeeeeessia"
+const testTweet = [
+    {
+        id:1,
+        gravatar:'1571724/pexels-photo-1571724.jpeg?auto=compress&cs=tinysrgb&h=350',
+        message:"robots dance on the tamborine",
+        author: {
+            name: 'Oli',
+            handle: "oleeeeeeessia"
+        },
+        timestamp: 'Wed Nov 21 2018 14:29:44 GMT-0300',
+        retweets: 3,
+        likes:234
     },
-    timestamp: 'Wed Nov 21 2018 14:29:44 GMT-0300',
-    retweets: 3,
-    likes:234
-}
+    {
+        id:2,
+        gravatar:'1571724/pexels-photo-1571724.jpeg?auto=compress&cs=tinysrgb&h=350',
+        message:"robots dance on the tamborine",
+        author: {
+            name: 'Oli',
+            handle: "oleeeeeeessia"
+        },
+        timestamp: 'Wed Nov 21 2018 14:29:44 GMT-0300',
+        retweets: 3,
+        likes:234   
+    },
+    {
+        id:3,
+        gravatar:'1571724/pexels-photo-1571724.jpeg?auto=compress&cs=tinysrgb&h=350',
+        message:"robots dance on the tamborine",
+        author: {
+            name: 'Oli',
+            handle: "oleeeeeeessia"
+        },
+        timestamp: 'Wed Nov 21 2018 14:29:44 GMT-0300',
+        retweets: 3,
+        likes:234   
+    },
+    {
+        id:4,
+        gravatar:'1571724/pexels-photo-1571724.jpeg?auto=compress&cs=tinysrgb&h=350',
+        message:"robots dance on the tamborine",
+        author: {
+            name: 'Oli',
+            handle: "oleeeeeeessia"
+        },
+        timestamp: 'Wed Nov 21 2018 14:29:44 GMT-0300',
+        retweets: 3,
+        likes:234   
+    },
+    {
+        id:5,
+        gravatar:'1571724/pexels-photo-1571724.jpeg?auto=compress&cs=tinysrgb&h=350',
+        message:"robots dance on the tamborine",
+        author: {
+            name: 'Oli',
+            handle: "oleeeeeeessia"
+        },
+        timestamp: 'Wed Nov 21 2018 14:29:44 GMT-0300',
+        retweets: 3,
+        likes:234   
+    }
+]
 
 ReactDOM.render(
-    <Tweet tweet={testTweet}/>,
+    <Tweet tweets={testTweet}/>,
     document.querySelector('#root')
 );
